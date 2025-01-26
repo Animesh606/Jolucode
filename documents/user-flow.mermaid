@@ -1,0 +1,54 @@
+flowchart TD
+    Start((Start)) --> A[Visit Platform]
+    
+    %% Authentication Flow
+    A --> B{Logged In?}
+    B -->|No| C[Register/Login]
+    C --> D[Email Verification]
+    D --> E[Complete Profile]
+    
+    %% Main Dashboard Flow
+    B -->|Yes| F[Dashboard]
+    F --> G[View Profile]
+    F --> H[View Assignments]
+    F --> I[Practice Problems]
+    
+    %% Profile Management Flow
+    G --> J[Add Platform Profiles]
+    J --> K[Connect LeetCode]
+    J --> L[Connect CodeForces]
+    J --> M[Connect CodeChef]
+    J --> N[Connect GFG]
+    J --> O[Connect HackerRank]
+    
+    %% Assignment Flow
+    H --> P[View Assignment Details]
+    P --> Q[Solve Problems]
+    Q -->|Coding Problem| R[Write Code]
+    Q -->|Other Problem| U
+    R --> S[Run Code]
+    S --> T{Tests Pass?}
+    T -->|No| R
+    T -->|Yes| U[Submit Solution]
+    
+    %% Practice Flow
+    I --> V[Browse Problems]
+    V --> W[Filter by Difficulty]
+    V --> X[Filter by Tags]
+    V --> Y[Search Problems]
+    W --> Q
+    X --> Q
+    Y --> Q
+    
+    %% Admin Flow
+    F --> Z{Is Admin?}
+    Z -->|Yes| AA[Admin Dashboard]
+    AA --> BB[Create Assignment]
+    AA --> CC[Add Problems]
+    AA --> DD[View Statistics]
+    AA --> EE[Manage Users]
+    
+    %% Submission Flow
+    U --> FF[View Results]
+    FF --> GG[View Solutions]
+    FF --> HH[View Analytics]

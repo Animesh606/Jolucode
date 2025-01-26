@@ -1,0 +1,83 @@
+erDiagram
+    User ||--o{ Profile : has
+    User ||--o{ Submission : makes
+    User ||--o{ Assignment : receives
+    User {
+        ObjectId _id
+        string email
+        string password
+        string name
+        string rollNo
+        string role
+        string Dept
+        int yearOfPassout
+        date joinedDate
+        boolean isVerified
+        array badges
+    }
+
+    Profile ||--o{ PlatformProfile : contains
+    Profile {
+        ObjectId _id
+        ObjectId userId
+        int totalSolved
+        int ranking
+        date lastUpdated
+    }
+
+    PlatformProfile {
+        ObjectId _id
+        ObjectId profileId
+        string platform
+        string username
+        int problemsSolved
+        int ranking
+        string rating
+        date lastSynced
+    }
+
+    Problem ||--o{ TestCase : contains
+    Problem ||--o{ Submission : has
+    Problem {
+        ObjectId _id
+        string title
+        string description
+        array tags
+        string difficulty
+        array sampleCases
+        string solution
+        string constraints
+        array acceptedLanguages
+    }
+
+    TestCase {
+        ObjectId _id
+        ObjectId problemId
+        string input
+        string output
+        boolean isHidden
+    }
+
+    Assignment ||--o{ Problem : includes
+    Assignment {
+        ObjectId _id
+        string title
+        string description
+        date startDate
+        date endDate
+        array problemIds
+        array assignedTo
+        string status
+    }
+
+    Submission {
+        ObjectId _id
+        ObjectId userId
+        ObjectId problemId
+        string language
+        string code
+        string status
+        int runtime
+        int memory
+        date submittedAt
+    }
